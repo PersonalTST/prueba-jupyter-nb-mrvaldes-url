@@ -1,6 +1,6 @@
 name: Classroom Autograding
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   autograding:
