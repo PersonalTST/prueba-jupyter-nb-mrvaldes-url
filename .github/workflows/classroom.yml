@@ -20,19 +20,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install nbconvert
 
+    - name: Convert notebook to script
+      run: |
+        jupyter nbconvert --to script Lab3.ipynb
+
     - name: Run autograding
       run: |
-        # Convert the Jupyter notebook to HTML and execute it
-        jupyter nbconvert --to notebook --execute --inplace Minimax_Tree_Games.ipynb
+        # Ejecuta el script convertido
+        python Lab3.py
         
-        # Convert the executed notebook to HTML for easier review
-        jupyter nbconvert --to html Minimax_Tree_Games.ipynb --output Minimax_Tree_Games.html
-
-        # Add additional steps here to validate outputs or compare against expected results
-        # For example, using nbgrader or custom scripts for grading
-
-    - name: Upload grading results
-      uses: actions/upload-artifact@v2
-      with:
-        name: grading-results
-        path: Minimax_Tree_Games.html
+        # Ejecuta las pruebas de autograding
+        python test.py
